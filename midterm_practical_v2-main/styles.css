@@ -1,0 +1,155 @@
+/* Q2 Starter — Web Fonts + Fluid Typography + Dashboard Layout
+
+Tasks: 
+
+1.) Define & apply colours using CSS variables and var() 
+2.) Load and apply a custom font
+3.) Create layout navigation with Flexbox & create a sticky navbar 
+4.) Create a flexible, fluid grid layout for cards without media queries 
+5.) Ensure CSS is efficient, well-formatted and valid */
+
+/* 1) Design Tokens — Color, Spacing, Radius, Type Scale */
+:root {
+  --space-1: .5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --radius: .75rem;
+
+  /* colors */
+  --color-bg: #0f1320;
+  --color-surface: #151a2c;
+  --color-border: #222842;
+  --color-text: #e6e9f5;
+  --color-muted: #a7b0d1;
+  --color-primary: #4f7cff;
+
+  /* fluid typography scale */
+  --step--1: clamp(.75rem, .65rem + .3vw, .9rem);
+  --step-0: clamp(.95rem, .85rem + .4vw, 1rem);
+  --step-1: clamp(1.15rem, 1rem + .6vw, 1.35rem);
+  --step-2: clamp(1.35rem, 1.15rem + .9vw, 1.75rem);
+  --step-3: clamp(1.75rem, 1.4rem + 1.4vw, 2.25rem);
+}
+
+/* 2) Base  */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap");
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+a:hover, a:focus { text-decoration: underline; }
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* 3) Header - Flex nav */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.logo {
+  font-weight: 800;
+  font-size: var(--step-1);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.nav-link {
+  padding: .25rem .5rem;
+  border-radius: .375rem;
+  color: var(--color-text);
+}
+
+.cta-btn {
+  padding: .5rem .75rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* 4) Hero */
+.hero {
+  padding: 2rem;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+.hero .lead {
+  max-width: 68ch;
+  color: var(--color-muted);
+  font-size: var(--step-0);
+}
+
+/* 5) Grid - Courses  */
+.page {
+  padding: var(--space-3);
+}
+
+.content-grid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+/* 6) Cards */
+.card {
+  border-radius: var(--radius);
+  padding: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .06);
+  transition: box-shadow .12s ease, transform .12s ease;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+}
+
+.card-title {
+  margin: .5rem 0 .25rem;
+  font-size: var(--step-1);
+  font-weight: 600;
+}
+
+.card p { color: var(--color-muted); }
+
+/* Footer */
+.site-footer {
+  padding: var(--space-2);
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+  text-align: center;
+}
